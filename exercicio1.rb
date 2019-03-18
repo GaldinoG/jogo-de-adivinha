@@ -1,8 +1,15 @@
 def jogoAdivinha(nome, listArray)
   
-  puts("\nEscolha seu nivel de dificuldade: 1 - 2 - 3 - 4 - 5")
-  strNivel = gets.chomp.to_i
-  
+  strChute = ""
+  strNivel = 0
+
+  loop do
+    puts("\nEscolha seu nivel de dificuldade:[1 - 2 - 3 - 4 - 5]")
+    strNivel = gets.chomp.to_i
+    listArray.clear
+    break if strNivel >= 1 && strNivel <= 5 
+  end
+
   case strNivel
   when 1
     number = rand(0..30)
@@ -11,7 +18,7 @@ def jogoAdivinha(nome, listArray)
   when 3
     number = rand(0..100)
   when 4
-	number = rand(0..150)
+	  number = rand(0..150)
   when 5
     number = rand(0..200)
   end
@@ -20,7 +27,12 @@ def jogoAdivinha(nome, listArray)
   while i <= 3
     puts("\nDigite o valor " + nome)
     chute = gets.chomp.to_i
-	listArray.push(chute)
+    while listArray.include? chute
+      puts("\nO valor ja foi chutado, digite outro numero")
+      puts("\nDigite o valor " + nome)
+      chute = gets.chomp.to_i
+    end
+	  listArray.push(chute)
     if chute == number
       abort("Acertou!!")
     else
@@ -30,6 +42,16 @@ def jogoAdivinha(nome, listArray)
         puts "O numero secreto é maior \n\n"
       end
     end 
+    if !listArray.empty?
+      z = 0
+      while z <= listArray.length
+        if strChute == ""
+          strChute = listArray.index(z)
+        else
+          strChute = strChute + ", " + listArray.index(z)
+        end
+      end 
+    end
     i += 1
   end
 
