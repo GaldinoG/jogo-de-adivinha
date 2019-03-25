@@ -48,8 +48,9 @@ def jogoAdivinha(nome, listArray)
         if strChute == ""
           strChute = listArray.index(z)
         else
-          strChute = strChute + ", " + listArray.index(z)
+          strChute = "#{strChute}, #{listArray.index(z)}"
         end
+        z += 1
       end 
     end
     i += 1
