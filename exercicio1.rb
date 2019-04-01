@@ -27,6 +27,10 @@ def jogoAdivinha(nome, listArray)
   while i <= 3
     puts("\nDigite o valor " + nome)
     chute = gets.chomp.to_i
+    while chute > number
+      puts("\nO valor é maior do que sua dificuldade, digite outro valor: " + nome)
+      chute = gets.chomp.to_i
+    end
     while listArray.include? chute
       puts("\nO valor ja foi chutado, digite outro numero")
       puts("\nDigite o valor " + nome)
